@@ -9,7 +9,7 @@ func main() {
 
 // visited should be already populated with occupied squares, so they appear as already visited
 // starting speed is 0, 0
-func shortestPath(visited map[pair]bool, graph map[pair][]pair, start, finish, speed pair, path []pair) []pair {
+func shortestPath(visited map[pair]bool, start, finish, speed pair, path []pair) []pair {
   if visited[start] {
     return path
   }
@@ -20,7 +20,7 @@ func shortestPath(visited map[pair]bool, graph map[pair][]pair, start, finish, s
   shortest := []pair{}
   for _, p := range adjacent(start, speed) {
     if !visited[p] {
-      newPath := shortestPath(visited, graph, p, finish, speed, path)
+      newPath := shortestPath(visited, p, finish, speed, path)
       if len(newPath) > 0 {
         if len(shortest) == 0 || (len(newPath) < len(shortest)) {
           shortest = newPath
